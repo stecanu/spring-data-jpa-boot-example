@@ -17,26 +17,14 @@
 package it.capgemini.example.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.hateoas.MediaTypes;
-import org.springframework.hateoas.ResourceSupport;
-import org.springframework.hateoas.hal.Jackson2HalModule;
-import org.springframework.hateoas.mvc.TypeConstrainedMappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import it.capgemini.example.ApplicationContextProvider;
 import it.capgemini.persistence.entity.Cliente;
@@ -60,109 +48,78 @@ public class ClientiMB implements Serializable {
 
 	private String cognome;
 	
+	private String comune;
+	
+	private String telefono;
+	
+	private String cap;
+	
+	
+	
+	
+
 	private String cognomeCerca;
 
-	@Value("${serverRest.url}")
-	private String serverUrl;
+	
 
-	@Value("${serverRest.port}")
-	private String serverPort;
-
-	private String restEndPointUrl;
 	
 	private ClientiRepo clientiRepo;
-//	private LinkedList<HashMap<String, String>> clienti = new LinkedList<HashMap<String, String>>();
 	
-	//@JsonProperty("clientes")
+	private Cliente clienteExample = new Cliente();
+
 	private List<Cliente> tuttiClienti;
 
 	@PostConstruct()
 	private void init() {
 		
 		    clientiRepo= (ClientiRepo) ApplicationContextProvider.getApplicationContext().getBean(ClientiRepo.class);
-		restEndPointUrl = "http://" + serverUrl + ":" + serverPort + "/";
+		
 	}
 
 	public String cercaTuttiClienti() {
 
-	
-	   
-	  
-		
-		//ClientiRepo clientiRepo= (ClientiRepo) ContextLoader.getCurrentWebApplicationContext().getBean(ClientiRepo.class);
-		
 		tuttiClienti= clientiRepo.findAll();
-	//	tuttiClienti = new LinkedList<Cliente>();
-		
-		//Cliente c = new  Cliente();
-		
-		//c.setNome("test");
-	//	c.setCognome("test1");
-		//tuttiClienti.add(c);
-		
+		//clientiRepo.findByNomeStartingWithOrNomeIsNullAndCognomeIsNotNullOrTelefonoLike("m", "06");
+
 		return "";
-		
-		//Map<String, Object> parameters = new HashMap<>();
-		//parameters.put("user", 27);
-		
-		
-//		ParameterizedTypeReference<Resources<Cliente>> resourceParameterizedTypeReference =
-//		        new ParameterizedTypeReference<Resources<Cliente>>() {};
-//
-//		        Traverson traverson;
-//				try {
-//					traverson = new Traverson(new URI(restEndPointUrl), MediaTypes.HAL_JSON);
-//					Resources<Cliente> itemResource = traverson.follow("clientes"). toObject(resourceParameterizedTypeReference);
-//					
-//					tuttiClienti = new LinkedList<Cliente>(itemResource.getContent()) ;
-//				} catch (URISyntaxException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-		
-
-		
-//		try {
-//			traverson = new Traverson(new URI(restEndPointUrl), MediaTypes.HAL_JSON);
-//			Object result = traverson.follow("clientes").toObject("$.clientes");
-//			setTuttiClienti(Arrays.asList(result));
-//		} catch (URISyntaxException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
-		
-		
-//		ObjectMapper mapper = new ObjectMapper();
-//		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//		mapper.registerModule(new Jackson2HalModule());
-//
-//		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//		converter.setSupportedMediaTypes(MediaType.parseMediaTypes("application/hal+json"));
-//		converter.setObjectMapper(mapper);
-//
-//		RestTemplate template = new RestTemplate(Collections.<HttpMessageConverter<?>> singletonList(converter));
-	
-			
-		//Object[]  result = template.getForObject(restEndPointUrl + "clienti",
-			//	Object[].class);
-		
-		
 		  
-		//result.getResultList();
-		
-//		for(Object cliente : objects)
-//		{
-//			BeanWrapperImpl wrapper = new BeanWrapperImpl(cliente);
-//			
-//			clienti.put
-//			
-//		}
 
-	//	return "";
 	}
 
+	
+	
+	public String cercaPerExample()
+	{
+		                           
+
+		
+	if(clienteExample.getCognome().isEmpty())
+		clienteExample.setCognome(null);
+	
+	if(clienteExample.getCap().isEmpty())
+		clienteExample.setCap(null);
+	
+	if(clienteExample.getNome().isEmpty())
+		clienteExample.setNome(null);
+	
+	if(clienteExample.getTelefono().isEmpty())
+		clienteExample.setTelefono(null);
+	
+	if(clienteExample.getComune().isEmpty())
+		clienteExample.setComune(null);
+	
+		
+		ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withIgnoreNullValues();
+		Example<Cliente> example = Example.of(clienteExample, matcher);
+
+		this.tuttiClienti=clientiRepo.findAll(example);
+		clienteExample = new Cliente();
+
+		
+		
+		return "";
+	}
+	
 	public String cercaPerCognome() {
 		
 		
@@ -170,13 +127,7 @@ public class ClientiMB implements Serializable {
 		this.tuttiClienti=clientiRepo.findByCognome(this.cognomeCerca);
 		this.cognomeCerca="";
 		
-//		RestTemplate restTemplate = new RestTemplate();
-//
-//		@SuppressWarnings("unchecked")
-//		ResponseEntity<? extends LinkedList<HashMap<String, String>>> responseEntity = restTemplate.getForEntity(
-//				restEndPointUrl, (Class<? extends LinkedList<HashMap<String, String>>>) LinkedList.class, this.cognome);
 
-	//	clienti = responseEntity.getBody();
 
 		return "";
 	}
@@ -186,65 +137,24 @@ public class ClientiMB implements Serializable {
 		Cliente c = new Cliente  ();
 		c.setCognome(this.cognome);
 		c.setNome(this.nome);
+		c.setCap(this.cap);
+		c.setTelefono(this.telefono);
+		c.setComune(this.comune);
 		
 		clientiRepo.save(c);
 		this.nome="";
 		this.cognome="";
+		this.cap="";
+		this.telefono="";
+		this.comune="";
 		this.cercaTuttiClienti();
 		return "";
 	}
 	
 
-	public String addCustomer() {
-		Map<String, String> cliente = new HashMap<String, String>();
+	
 
-		cliente.put("nome", this.nome);
 
-		cliente.put("cognome", this.cognome);
-
-		// ClientHttpRequestFactory requestFactory = new
-		// HttpComponentsClientHttpRequestFactory(new
-		// org.apache.http.impl.client.DefaultHttpClient());
-		RestTemplate restTemplate = new RestTemplate();
-
-		restTemplate.postForObject("http://localhost:8080/clienti", cliente, String.class);
-		// restTemplate.postForObject("http://localhost:8080/clienti", request,
-		// Form.class);
-		// Object obj =
-		// restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random",
-		// Quote.class);
-
-		// Client client = ClientBuilder.newClient();
-		// WebTarget target = client.target("http://localhost:8080").path("clienti");
-
-		//
-		//
-		// target.request(MediaType.APPLICATION_JSON_TYPE)
-		// .post(Entity.entity(form,MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-		this.nome = "";
-		this.cognome = "";
-
-		return "";
-	}
-
-	public RestTemplate getRestTemplateWithHalMessageConverter() {
-		 RestTemplate restTemplate = new RestTemplate();
-		 List<HttpMessageConverter<?>> existingConverters = restTemplate.getMessageConverters();
-		 List<HttpMessageConverter<?>> newConverters = new ArrayList<>();
-		 newConverters.add(getHalMessageConverter());
-		 newConverters.addAll(existingConverters);
-		 restTemplate.setMessageConverters(newConverters);
-		 return restTemplate;
-		}
-
-		private HttpMessageConverter getHalMessageConverter() {
-		 ObjectMapper objectMapper = new ObjectMapper();
-		 objectMapper.registerModule(new Jackson2HalModule());
-		 MappingJackson2HttpMessageConverter halConverter = new TypeConstrainedMappingJackson2HttpMessageConverter(ResourceSupport.class);
-		 halConverter.setSupportedMediaTypes(Arrays.asList(MediaTypes.HAL_JSON));
-		 halConverter.setObjectMapper(objectMapper);
-		 return halConverter;
-		}
 	public String getNome() {
 		return nome;
 	}
@@ -276,5 +186,39 @@ public class ClientiMB implements Serializable {
 
 	public void setCognomeCerca(String cognomeCerca) {
 		this.cognomeCerca = cognomeCerca;
+	}
+
+	public Cliente getClienteExample() {
+		return clienteExample;
+	}
+
+	public void setClienteExample(Cliente clienteExample) {
+		this.clienteExample = clienteExample;
+	}
+
+	public String getComune() {
+		return comune;
+	}
+
+	public void setComune(String comune) {
+		this.comune = comune;
+	}
+
+	
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 }

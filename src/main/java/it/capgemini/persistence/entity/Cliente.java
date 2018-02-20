@@ -17,6 +17,9 @@ public class Cliente {
     private Long id;
     private String nome;
     private String cognome;
+    private String comune;
+    private String telefono;
+    private String cap;
 
     @OneToMany(mappedBy="cliente")
     private Set<Ordine> ordini;
@@ -53,6 +56,42 @@ public class Cliente {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+
+
+
+	public String getComune() {
+		return comune;
+	}
+
+
+
+	public void setComune(String comune) {
+		this.comune = comune;
+	}
+
+
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+
+
+	public String getCap() {
+		return cap;
+	}
+
+
+
+	public void setCap(String cap) {
+		this.cap = cap;
 	}
 
 

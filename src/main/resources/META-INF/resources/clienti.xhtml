@@ -29,24 +29,38 @@
 		
 
 		<p:dialog header="cerca per cognome" widgetVar="dlg3" 
-			height="100">
+			>
+			
 			
 			<h:panelGrid columns="2">
-			
+			<h:outputText value="nome"/>
+			<h:inputText value="#{clientiMB.clienteExample.nome}"/>
 			<h:outputText value="cognome"/>
-			<h:inputText value="#{clientiMB.cognomeCerca}"/>
-				<p:commandButton action="#{clientiMB.cercaPerCognome}" value="cerca"  oncomplete="PF('dlg2').hide();" update="@form"/>
+			<h:inputText value="#{clientiMB.clienteExample.cognome}"/>
+			<h:outputText value="comune"/>
+			<h:inputText value="#{clientiMB.clienteExample.comune}"/>
+			<h:outputText value="telefono"/>
+			<h:inputText value="#{clientiMB.clienteExample.telefono}"/>
+			<h:outputText value="cap"/>
+			<h:inputText value="#{clientiMB.clienteExample.cap}"/>
+				<p:commandButton action="#{clientiMB.cercaPerExample}" value="cerca"  oncomplete="PF('dlg2').hide();" update="@form"/>
 			
 			</h:panelGrid>
 		</p:dialog>
 		
 		<p:dialog header="Aggiungi utente" widgetVar="dlg2" 
-			height="100">
+			>
 			<h:panelGrid columns="2">
 			<h:outputText value="nome"/>
 			<h:inputText value="#{clientiMB.nome}"/>
 			<h:outputText value="cognome"/>
 			<h:inputText value="#{clientiMB.cognome}"/>
+			<h:outputText value="comune"/>
+			<h:inputText value="#{clientiMB.comune}"/>
+			<h:outputText value="telefono"/>
+			<h:inputText value="#{clientiMB.telefono}"/>
+			<h:outputText value="cap"/>
+			<h:inputText value="#{clientiMB.cap}"/>
 				<p:commandButton action="#{clientiMB.aggiungiCliente}" value="Aggiungi"  oncomplete="PF('dlg2').hide();" update="@form"/>
 			
 			</h:panelGrid>
@@ -63,6 +77,16 @@
 			</p:column>
 			<p:column headerText="Cognome">
 				<h:outputText value="#{cliente.cognome}" />
+			</p:column>
+			<p:column headerText="comune">
+				<h:outputText value="#{cliente.comune}" />
+			</p:column>
+			<p:column headerText="telefono">
+				<h:outputText value="#{cliente.telefono}" />
+			</p:column>
+			
+			<p:column headerText="cap">
+				<h:outputText value="#{cliente.cap}" />
 			</p:column>
 
 			<p:column style="width:32px;text-align: center">
