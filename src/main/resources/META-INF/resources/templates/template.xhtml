@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<ui:debug />
+	<f:metadata>
+		<ui:insert name="metadata" />
+	</f:metadata>
+
+	<h:head>
+		<p:ajaxStatus onstart="statusDialog.show();"
+			onsuccess="statusDialog.hide();" />
+
+		<p:layout fullPage="true" resizeTitle="resize"
+			style="background-color:white;">
+			<p:layoutUnit position="north" size="78" id="north">
+				<h:form id="contentForm" prependId="false"
+					enctype="multipart/form-data">
+
+
+
+					<p:menubar >
+						
+							<p:menuitem value="Clienti" url="/clienti.jsf" />
+							
+							<p:menuitem value="Oridni" url="#" />
+							
+							<p:menuitem value="Prodotti" url="#" />
+
+
+						
+
+
+					</p:menubar>
+
+
+
+				</h:form>
+			</p:layoutUnit>
+			<!--  
+        <p:layoutUnit position="west" id="west" resizable="false" header="#{msg['menu.title']}" style="height:580px;overflow:hidden;" size="225">
+            <ui:include src="menu.xhtml" />
+        </p:layoutUnit>
+          -->
+			<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+				<h:form id="mainForm">
+					<p:messages autoUpdate="true" id="msgs" showDetail="true"
+						showSummary="true" />
+					<ui:insert name="content" />
+				</h:form>
+			</p:layoutUnit>
+			<!--  
+        <p:layoutUnit position="east" size="0" style="width:0px; display:none;" id="east">
+        </p:layoutUnit>
+
+        <p:layoutUnit position="south" resizable="true" id="south">
+            <ui:include src="footer.xhtml" />
+        </p:layoutUnit>
+         -->
+		</p:layout>
+	</h:head>
+
+	<h:body onload="statusDialog.hide();">
+	</h:body>
+
+</f:view>
+</html>

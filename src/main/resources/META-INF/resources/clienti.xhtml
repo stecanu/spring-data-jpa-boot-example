@@ -1,0 +1,87 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h:panelGrid columns="3" cellpadding="5">
+			
+			<p:commandButton value="mostra tutti" action="#{clientiMB.cercaTuttiClienti}" update="@form"/>
+			
+			<p:commandButton value="aggiungi" type="button"
+				onclick="PF('dlg2').show();" />
+
+			
+		
+			
+			<p:commandButton value="cerca" type="button"
+				onclick="PF('dlg3').show();" />
+
+			
+		</h:panelGrid>
+
+		
+
+		<p:dialog header="cerca per cognome" widgetVar="dlg3" 
+			height="100">
+			
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="cognome"/>
+			<h:inputText value="#{clientiMB.cognomeCerca}"/>
+				<p:commandButton action="#{clientiMB.cercaPerCognome}" value="cerca"  oncomplete="PF('dlg2').hide();" update="@form"/>
+			
+			</h:panelGrid>
+		</p:dialog>
+		
+		<p:dialog header="Aggiungi utente" widgetVar="dlg2" 
+			height="100">
+			<h:panelGrid columns="2">
+			<h:outputText value="nome"/>
+			<h:inputText value="#{clientiMB.nome}"/>
+			<h:outputText value="cognome"/>
+			<h:inputText value="#{clientiMB.cognome}"/>
+				<p:commandButton action="#{clientiMB.aggiungiCliente}" value="Aggiungi"  oncomplete="PF('dlg2').hide();" update="@form"/>
+			
+			</h:panelGrid>
+		</p:dialog>
+
+	
+		<p:dataTable id="basicDT" var="cliente"
+			value="#{clientiMB.tuttiClienti}" style="width:50%">
+			<f:facet name="header">
+            Clienti
+        </f:facet>
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+			<p:column headerText="Cognome">
+				<h:outputText value="#{cliente.cognome}" />
+			</p:column>
+
+			<p:column style="width:32px;text-align: center">
+				<!-- 
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{car}" target="#{dtSelectionView.selectedCar}" />
+            </p:commandButton>
+             -->
+			</p:column>
+		</p:dataTable>
+
+
+
+
+	
+
+
+	</ui:define>
+</ui:composition>
+
+
+
