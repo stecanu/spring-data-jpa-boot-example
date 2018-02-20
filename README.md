@@ -14,18 +14,17 @@ Per l'utilizzo su db oracle :
  1) scommentare la dipendenza del driver oracle nel pom.xml
    "<!-- Oracle JDBC driver-!>"
 
- 2) commentare quella del dirver h2
-   "<!-- H2 driver --> "
+ 2) commentare quella del dirver h2 "<!-- H2 driver -->"
 
  3)nel file application.properties
    commentare le rige da 
    "# H2 settings"
    fino
-  " #end H2 settings"
+  "#end H2 settings"
   e scommentare le righe da 
- " # Oracle settings"
+  "#Oracle settings"
   fino a
- " #end Oracle settings"
+  "#end Oracle settings"
   
 4) lanciare il file addOracleJdbc.bat nella cartella utilizzo
 
