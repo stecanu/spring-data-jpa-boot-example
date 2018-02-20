@@ -5,21 +5,21 @@
     JDK 1.8+
 	Maven
 	
-### Installing
+### Installazione
 
 Scaricare il progetto selezionando il tasto "clone or download"
 
 Per l'utilizzo su db oracle :
 
  1)scommentare la dipendenza del driver oracle nel pom.xml
-  <!-- Oracle JDBC driver-!>
+  "<!-- Oracle JDBC driver-!>"
 
  2) commentare quella del dirver h2
-  <!-- H2 driver --> 
+  "<!-- H2 driver --> "
 
  3)nel file application.properties
   commentare le rige da 
-  # H2 settings
+  "# H2 settings"
    fino
   #end H2 settings
   e scommentare le righe da 
