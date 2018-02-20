@@ -16,7 +16,7 @@ Per l'utilizzo su db oracle :
    "<!-- Oracle JDBC driver-!>"
 
 
- 2) nel file src/resources/application.properties commentare le rige da  \n "# H2 settings" fino "#end H2 settings" e scommentare le righe da  "#Oracle settings" fino a "#end Oracle settings"
+ 2) nel file src/resources/application.properties commentare le rige da   "# H2 settings" fino "#end H2 settings" e scommentare le righe da  "#Oracle settings" fino a "#end Oracle settings"
   
  3) lanciare il file addOracleJdbc.bat nella cartella utilizzo
 
