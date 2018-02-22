@@ -23,17 +23,16 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
 import it.capgemini.example.ApplicationContextProvider;
 import it.capgemini.persistence.entity.Cliente;
 import it.capgemini.persistence.repositories.ClientiRepo;
-import lombok.Getter;
-import lombok.Setter;
 
-@Setter
-@Getter
+
+
 @Named
 @ViewScoped
 public class ClientiMB implements Serializable {
@@ -62,7 +61,7 @@ public class ClientiMB implements Serializable {
 
 	
 
-	
+	@Autowired
 	private ClientiRepo clientiRepo;
 	
 	private Cliente clienteExample = new Cliente();
@@ -72,7 +71,10 @@ public class ClientiMB implements Serializable {
 	@PostConstruct()
 	private void init() {
 		
+		if(clientiRepo==null)
+		{
 		    clientiRepo= (ClientiRepo) ApplicationContextProvider.getApplicationContext().getBean(ClientiRepo.class);
+		}
 		
 	}
 

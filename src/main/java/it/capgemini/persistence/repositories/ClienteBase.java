@@ -7,7 +7,8 @@ import org.springframework.data.repository.Repository;
 
 import it.capgemini.persistence.entity.Cliente;
 
-public interface ClienteRepoBase extends Repository<Cliente, Long> {
+@org.springframework.stereotype.Repository
+public interface ClienteBase extends Repository<Cliente, Long> {
 
 	@Query("Select c from Cliente c ")
     public Set<Cliente> findAll();	

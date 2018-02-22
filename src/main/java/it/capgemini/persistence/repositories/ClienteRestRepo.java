@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.data.rest.core.annotation.*;
+
 
 import it.capgemini.persistence.entity.Cliente;
-import java.lang.String;
 
 @RepositoryRestResource(collectionResourceRel="clienti" ,path = "clienti")
 public interface ClienteRestRepo extends  JpaRepository<Cliente, Long> {
@@ -21,6 +20,5 @@ public interface ClienteRestRepo extends  JpaRepository<Cliente, Long> {
 	@RestResource(exported = false)
 	void deleteAll();
 
-	
 	
 }

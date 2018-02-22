@@ -1,0 +1,181 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
+
+
+
+<h:head></h:head>
+<h:body>
+<h:form >
+		<h:panelGrid columns="5" cellpadding="5">
+
+			<p:commandButton value="Catalogo"
+				action="#{prodottiMB.cercaTutti}" update="@form" />
+
+			<p:commandButton value="Aggiungi" type="button"
+				onclick="PF('dlg2').show();" />
+
+  
+	<p:commandButton value="Esercizio 2" type="button"
+				onclick="PF('es2').show();" />
+				
+				<p:commandButton value="Esercizio 3" type="button"
+				onclick="PF('es3').show();" />
+
+			<p:commandButton value="Esercizio 4" type="button"
+				onclick="PF('es4').show();" />
+
+
+
+		</h:panelGrid>
+  <p:dialog header="Esercizio 2"  modal="true" widgetVar="es2" >
+			<h:panelGrid columns="2">
+				<h:outputText value="descrizone contiene" />
+				<h:inputText value="#{prodottiMB.prodottoExampleEs2.descrizione}"  />
+				
+				<h:outputText value="prezzo minore uguale" />
+				<h:inputText value="#{prodottiMB.prodottoExampleEs2.prezzo}"  />
+				<h:outputText value="quantita maggiore uguale" />
+				<h:inputText value="#{prodottiMB.prodottoExampleEs2.quantita}"  />
+
+				
+				<p:commandButton action="#{prodottiMB.esercizio2}"
+					value="Cerca" oncomplete="PF('es2').hide();" update="@form" />
+
+			</h:panelGrid>
+		</p:dialog>
+		
+		<p:dialog header="Esercizio 3"  modal="true" widgetVar="es3" >
+			<h:panelGrid columns="2">
+				<h:outputText value="descrizone contiene" />
+				<h:inputText value="#{prodottiMB.prodottoExample.descrizione}"  />
+				
+				<h:outputText value="prezzo minore uguale" />
+				<h:inputText value="#{prodottiMB.prodottoExample.prezzo}"  />
+				<h:outputText value="quantita maggiore uguale" />
+				<h:inputText value="#{prodottiMB.prodottoExample.quantita}"  />
+
+				
+				<p:commandButton action="#{prodottiMB.esercizio3}"
+					value="Cerca" oncomplete="PF('es3').hide();" update="@form" />
+
+			</h:panelGrid>
+		</p:dialog>
+		
+		<p:dialog header="Esercizio 4"  modal="true" widgetVar="es4" >
+			<h:panelGrid columns="2">
+				<h:outputText value="descrizone contiene" />
+				<h:inputText value="#{prodottiMB.prodottoExample.descrizione}"  />
+				<p:commandButton action="#{prodottiMB.esercizio4}"
+					value="Cerca" oncomplete="PF('es4').hide();" update="@form" />
+
+			</h:panelGrid>
+		</p:dialog>
+
+
+		<p:dialog header="Aggiungi Prodotto"  modal="true" widgetVar="dlg2" >
+			<h:panelGrid columns="2">
+				<h:outputText value="nome" />
+				<h:inputText value="#{prodottiMB.prodottoInsert.nome}"  />
+				<h:outputText value="descrizione" />
+				<h:inputText value="#{prodottiMB.prodottoInsert.descrizione}" />
+				<h:outputText value="prezzo" />
+				<h:inputText value="#{prodottiMB.prodottoInsert.prezzo}" />
+				<h:outputText value="quantita'" />
+				<h:inputText value="#{prodottiMB.prodottoInsert.quantita}" />
+
+				<h:outputText value="Categoria" />
+				<p:selectOneMenu id="cat" value="#{prodottiMB.catSelezionata}" rendered="true" requiredMessage="selezionare la categoria">
+
+					<f:selectItems var="cat" value="#{prodottiMB.categorie}"
+						itemLabel="#{cat.nome}" itemValue="#{cat.cat_id}" />
+				</p:selectOneMenu>
+				<p:commandButton action="#{prodottiMB.insertProdotto}"
+					value="Aggiungi" oncomplete="PF('dlg2').hide();" update="@form" />
+
+			</h:panelGrid>
+		</p:dialog>
+
+
+		<p:dataTable id="basicDT" var="prodotto" 
+		 paginator="true"  rowsPerPageTemplate="5,10,15" 
+			rendered="#{not empty prodottiMB.tuttiProdotti}"
+			value="#{prodottiMB.tuttiProdotti}" style="width:100%">
+			<f:facet name="header">
+            Prodotti in catalogo
+        </f:facet>
+			<p:column headerText="Nome">
+				<h:outputText value="#{prodotto.nome}" />
+			</p:column>
+			<p:column headerText="descrizione">
+				<h:outputText value="#{prodotto.descrizione}" />
+			</p:column>
+			<p:column headerText="prezzo"  sortBy="#{prodotto.prezzo}"  style="width:50px;">
+				<h:outputText value="#{prodotto.prezzo}" />
+			</p:column>
+			<p:column headerText="quantità" style="width:50px;">
+				<h:outputText value="#{prodotto.quantita}" />
+			</p:column>
+
+			<p:column headerText="categoria" style="width:100px;">
+				<h:outputText value="#{prodotto.categoria.nome}" />
+			</p:column>
+
+			<p:column headerText="" style="width:10px;">
+
+				<p:commandLink   oncomplete="PF('dlg4').show();"  update="@form">
+				  <f:setPropertyActionListener value="#{prodotto}" target="#{prodottiMB.prodottoUpdate}" />
+            
+					<h:graphicImage name="images/update.png" height="16" width="16" />
+				</p:commandLink>
+			</p:column>
+			<p:column headerText=""  style="width:10px;">
+
+				<p:commandLink action="#{prodottiMB.deleteProdotto(prodotto)}"  update="basicDT">
+					<h:graphicImage name="images/del.png" height="16" width="16" />
+					<p:confirm header="Confirmation" message="Cancellare?" icon="ui-icon-alert" />
+				</p:commandLink >
+
+			</p:column>
+		</p:dataTable>
+
+
+ <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+
+
+
+<p:dialog header="modifica Prodotto" widgetVar="dlg4" modal="true"  width="600">
+			<h:panelGrid columns="2" width="500">
+				<h:outputText value="nome" />
+				<h:inputText value="#{prodottiMB.prodottoUpdate.nome}" />
+				<h:outputText value="descrizione" />
+				<h:inputTextarea value="#{prodottiMB.prodottoUpdate.descrizione}" cols="50" />
+				<h:outputText value="prezzo" />
+				<h:inputText value="#{prodottiMB.prodottoUpdate.prezzo}" />
+				<h:outputText value="quantita'" />
+				<h:inputText value="#{prodottiMB.prodottoUpdate.quantita}" />
+
+			
+				
+				<p:commandButton action="#{prodottiMB.updateProdotto}"
+					value="modifica" oncomplete="PF('dlg4').hide();" update="@form" />
+
+			</h:panelGrid>
+		</p:dialog>
+		
+		
+	
+</h:form>
+</h:body>
+
+	
+</html>
+
+
+

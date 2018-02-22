@@ -12,6 +12,7 @@ public class Prodotto {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long codiceProdotto;
+	private String nome;
 	private String descrizione;
 	private Double prezzo;
 	private Integer quantita;
@@ -21,6 +22,12 @@ public class Prodotto {
 	
 	
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	public Long getCodiceProdotto() {
 		return codiceProdotto;
 	}
@@ -44,6 +51,12 @@ public class Prodotto {
 	}
 	public void setQuantita(Integer quantita) {
 		this.quantita = quantita;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 }
