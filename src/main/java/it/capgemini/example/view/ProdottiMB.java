@@ -15,7 +15,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import it.capgemini.persistence.entity.Categoria;
 import it.capgemini.persistence.entity.Prodotto;
 import it.capgemini.persistence.repositories.CategoriaRepo;
-import it.capgemini.persistence.repositories.ProdottiRepo;
+
 
 @Named
 @ViewScoped
