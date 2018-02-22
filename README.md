@@ -16,14 +16,24 @@ Per l'utilizzo su db oracle :
    "<!-- Oracle JDBC driver-!>"
 
 
- 2) nel file src/resources/application.properties commentare le rige da   "# H2 settings" fino "#end H2 settings" e scommentare le righe da  "#Oracle settings" fino a "#end Oracle settings"
+ 2) nel file src/resources/application.properties commentare le rige da   "# H2 settings" fino "#end H2 settings" e scommentare le righe da  "#Oracle settings" fino a "#end Oracle settings"  e inserire i corretti puntamenti al db
+ 
+ 
   
  3) lanciare il file addOracleJdbc.bat nella cartella utilizzo
+
+Per l'utillizzo con H2
+  1) è necessario avere un instanza attiva del server h2 (http://www.h2database.com/html/download.html)
+  2) nel file src/resources/application.properties inserire i corretti puntamenti al db
+  3) aprire la console di H2 e creare il db  in linea con i puntamenti inseriti.
 
 compilare  con il camando mvn clean install dalla cartella contenente il file pom.xml
 eseguire il comando java -jar "nome del file jar" nella cartella target
 
 accedere al link http://localhost:9000/index.jsf
+
+
+
 
 
 ### Esercizio 1)
