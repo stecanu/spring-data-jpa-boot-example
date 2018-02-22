@@ -129,6 +129,7 @@ SCOMMENTARE PER ESERCIZIO 1 FINO a QUI */
 		prodottoExample.setNome(null);
 		prodottoExample.setQuantita(null);
 		prodottoExample.setPrezzo(null);
+		prodottoExample.setDescrizione(this.desc);
 
 		// inserire qui la soluzione dell'esercizio 4 utilizzare l'oggeto prodottoExample
 		
@@ -210,5 +211,17 @@ SCOMMENTARE PER ESERCIZIO 1 FINO a QUI */
 	public void setProdottoExampleEs2(Prodotto prodottoExampleEs2) {
 		this.prodottoExampleEs2 = prodottoExampleEs2;
 	}
+	
+	
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+
+	private String desc;
 
 }

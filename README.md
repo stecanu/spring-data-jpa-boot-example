@@ -67,6 +67,8 @@ accedere al link http://localhost:9000/index.jsf
   2 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio4 e verificare il funzionamento della query;</br>
 
 
+Esempio funzionante : https://spring-jpa-example.cfapps.io/prodotti.jsf
+
 
 
 

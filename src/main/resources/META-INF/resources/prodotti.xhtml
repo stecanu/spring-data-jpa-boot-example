@@ -68,7 +68,7 @@
 		<p:dialog header="Esercizio 4"  modal="true" widgetVar="es4" >
 			<h:panelGrid columns="2">
 				<h:outputText value="descrizone contiene" />
-				<h:inputText value="#{prodottiMB.prodottoExample.descrizione}"  />
+				<h:inputText value="#{prodottiMB.desc}"  />
 				<p:commandButton action="#{prodottiMB.esercizio4}"
 					value="Cerca" oncomplete="PF('es4').hide();" update="@form" />
 
