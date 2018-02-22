@@ -37,23 +37,23 @@ accedere al link http://localhost:9000/index.jsf
 
  1 nel repository creato nell'esercizio precedente creare, con l'utilizzo dell'annotation @Query la funzionalità chiamata 
  queryEsercizio2  che sia in grado di cercare tutti i prodotti che hanno una descrizione in like 
-  </br> con il paramentro fornito con un prezzo minore di un paramentro fornito</br>
-   e con qunatità maggiore di un paramentro fornito.</br>
- 2 andare nella classe ProdottiMB nel package it.capgemini.example.view  scommentare le righe realtive al metodo esercizio2</br>
- 3 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio2 e verificare il funzionamento della query;</br>
+   con il paramentro fornito, </br>con un prezzo minore di un paramentro fornito</br> 
+   e con qunatità maggiore di un paramentro fornito.</br> 
+ 2 andare nella classe ProdottiMB nel package it.capgemini.example.view  scommentare le righe realtive al metodo esercizio2</br> 
+ 3 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio2 e verificare il funzionamento della query;</br> 
 
 ### Esercizio 3)
 
  1 nel repository creato al punto 1 creare, tramite l'utilizzo della tecnica della sintassi, la stessa funzione 
-      di ricerca del punto precedente</br>
- 2 andare nella classe ProdottiMB nel package it.capgemini.example.view   e inserire la soluzione nel punto </br>
+      di ricerca del punto precedente</br> 
+ 2 andare nella classe ProdottiMB nel package it.capgemini.example.view   e inserire la soluzione nel punto </br> 
      dove si trova il commento "inserire qui la soluzione dell'esercizio 3",</br> nota: i dati dalla gui arrivano nell'oggetto  "prodottoExample"</br>
- 4 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio3 e verificare il funzionamento della query;</br>
+ 4 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio3 e verificare il funzionamento della query;</br> 
  
 ### Esercizio 4) facoltativo
   
   1 andare nella classe ProdottiMB nel package it.capgemini.example.view   in corrispondenza del commento: </br>"inserire qui la soluzione dell'esercizio4",
-    creare un matcher che trovi tutti i prodotti che hanno la desrizione in like con una stringa di ricerca presente prodottoExample.getDescrizione()  </br>
+    creare un matcher che trovi tutti i prodotti che hanno la desrizione in like con una stringa di ricerca presente prodottoExample.getDescrizione()  </br> 
   2 accedere all'url http://localhost:9000/prodotti.jsf cliccare su esercizio4 e verificare il funzionamento della query;</br>
 
 
